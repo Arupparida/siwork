@@ -1,0 +1,47 @@
+Option 1- BRIDGE
+
+-> Configure Mosquitto bridge
+Run the following command:
+$ sudo nano /etc/mosquitto/mosquitto.conf
+
+Paste the following:
+
+# Place your local configuration in /etc/mosquitto/conf.d/
+#
+# A full description of the configuration file is at
+# /usr/share/doc/mosquitto/examples/mosquitto.conf.example
+
+pid_file /var/run/mosquitto.pid
+
+persistence true
+persistence_location /var/lib/mosquitto/
+
+log_dest file /var/log/mosquitto/mosquitto.log
+
+allow_anonymous false
+password_file /etc/mosquitto/pwfile
+#listener 1883
+
+#bridge initialization
+connection bridge-01  
+log_type all
+#your azure iot hub address
+address sensordata.azure-devices.net:8883  
+#azure iot hub username
+remote_username sensordata.azure-devices.net/mypi/?api-version=2018-06-30 
+#azure iot hub sas token
+remote_password SharedAccessSignature sr=sensordata.azure-devices.net%2Fdevices%2Fmypi&sig=%2FbiXjeCN%2FgysNqptmg5rsgzblEgFtCAGXzDn%2B4QkGNs%3D&se=1628676908 
+#azure iot hub device id
+remote_clientid mypi  
+#certificate path
+bridge_cafile /home/pi/Documents/ssl/BaltimoreCyberTrustRoot.crt.pem  
+bridge_protocol_version mqttv311
+bridge_tls_version tlsv1.2
+start_type automatic
+bridge_insecure false
+try_private false
+cleansession true
+notifications false
+notification_topic events/
+topic # out 1 devices/mypi/messages/events/
+#topic # in 0

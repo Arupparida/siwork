@@ -1,0 +1,4 @@
+Option 2
+-> Bash and python files used to add broker ID and time fields to data and send it over to cloud 
+
+-> Only run MQTTpub.sh file keeping the MQTTsub.sh and BrokerInfo.py in the same folder as MQTTpub.sh

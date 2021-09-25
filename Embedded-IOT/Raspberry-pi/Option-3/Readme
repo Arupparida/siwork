@@ -1,0 +1,4 @@
+Option 3
+-> Setup bridge on raspberry pi to push data locally onto the same raspberry pi from which the bash file will take the data (explained in option 2).
+-> In this option we will utilize queueing feature of bridge to prevent data loss and further use bash and python files to add some new fields to the data.
+-> Only run MQTTpub.sh file keeping the MQTTsub.sh and BrokerInfo.py in the same folder as MQTTpub.sh

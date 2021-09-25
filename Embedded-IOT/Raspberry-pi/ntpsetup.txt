@@ -1,0 +1,28 @@
+$ sudo apt-get update
+
+Install NTP server-
+$ sudo apt-get install ntp
+
+Verify installation-
+$ sntp --version
+
+Switch to NTP server pool closest to you-
+$ sudo nano /etc/ntp.conf
+In config file
+Remove-
+pool 0.debian.pool.ntp.org iburst
+pool 1.debian.pool.ntp.org iburst
+pool 2.debian.pool.ntp.org iburst
+pool 3.debian.pool.ntp.org iburst
+
+Replace above lines with-
+pool 0.in.pool.ntp.org iburst
+pool 2.in.pool.ntp.org iburst
+pool 3.in.pool.ntp.org iburst
+pool 4.in.pool.ntp.org iburst
+
+Restart NTP server-
+$ sudo service ntp restart
+
+Verify NTP server is running-
+$ sudo service ntp status

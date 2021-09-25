@@ -1,0 +1,35 @@
+Mosquitto setup on Raspberry pi
+
+-> Install Mosquitto
+$ sudo apt-get install mosquitto -y
+$ sudo apt-get install mosquitto-clients -y
+
+
+-> Configure Mosquitto
+Run the following
+$ sudo nano /etc/mosquitto/mosquitto.conf
+
+Paste the following->
+# Place your local configuration in /etc/mosquitto/conf.d/
+#
+# A full description of the configuration file is at
+# /usr/share/doc/mosquitto/examples/mosquitto.conf.example
+ 
+pid_file /var/run/mosquitto.pid
+ 
+persistence true
+persistence_location /var/lib/mosquitto/
+ 
+log_dest file /var/log/mosquitto/mosquitto.log
+ 
+allow_anonymous false
+password_file /etc/mosquitto/pwfile
+listener 1883
+
+
+
+-> Setup Mosquitto credentials
+$ sudo mosquitto_passwd -c /etc/mosquitto/pwfile  TYPE_YOUR_USERNAME_HERE
+
+-> Test the Mosquitto by subscribing to a topic
+$ mosquitto_sub -d -u MOSQUITTO_USERNAME -P MOSQUITTO_PASSWORD -t test
